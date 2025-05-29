@@ -1,0 +1,201 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KIRA Clinic - About Us</title>
+  <style>
+    body {
+      background-image: url("y.jpg");
+      background-size: cover;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+  background-color: #4CAF50;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.2rem;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: green;
+  font-weight: bold;
+}
+
+    .container {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2, h3 {
+      color: #007b5e;
+    }
+
+    p {
+      line-height: 1.7;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    em {
+      display: block;
+      margin-top: 20px;
+      font-style: italic;
+      text-align: center;
+      color: #007b5e;
+      font-weight: bold;
+    }
+
+    .lang-select {
+      text-align: right;
+      margin-bottom: 20px;
+    }
+
+    .lang-select select {
+      padding: 5px 10px;
+      font-size: 14px;
+    }
+
+    [data-lang] {
+      display: none;
+    }
+
+    [data-lang].active {
+      display: block;
+    }
+    [data-lang].active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+      <div class="logo">
+        <img src="logo.png" alt="Kira Clinic Logo">
+        <span>Kira Clinic</span>
+      </div>
+      <nav>
+          <a href="web task.html">Home</a>
+          <a href="service.html">Services</a>
+          <a href="partnership.html">Partnership</a>
+          <a href="docters.html">Our Doctors</a>
+          <a href="about.html">About Us</a>
+          <a href="new.html">Contact us</a>
+
+        </div>
+
+  <div class="container">
+    <div class="lang-select">
+      <label for="language">Select Language:</label>
+      <select id="language">
+        <option value="en">English</option>
+        <option value="rw">Kinyarwanda</option>
+        
+      </select>
+    </div>
+
+    <!-- English Content -->
+    <div class="content" data-lang="en" class="active">
+      <h2>About Us</h2>
+      <p><strong>Welcome to KIRA Clinic</strong></p>
+      <p>KIRA Clinic is a trusted private health center located in the heart of Nyagatare District, committed to providing high-quality, patient-centered healthcare services to the community.</p>
+
+      <h3>Our Mission</h3>
+      <p>To deliver high-quality, affordable, and patient-focused healthcare that promotes the well-being of individuals and families in Nyagatare and beyond.</p>
+
+      <h3>Our Vision</h3>
+      <p>To be a leading private health center in the Eastern Province, known for excellence in clinical care and community health services.</p>
+
+      <h3>Core Values</h3>
+      <ul>
+        <li>Compassion</li>
+        <li>Professionalism</li>
+        <li>Integrity</li>
+        <li>Respect</li>
+        <li>Continuous Improvement</li>
+      </ul>
+
+      <em>KIRA Clinic — Your Health, Our Priority.</em>
+    </div>
+
+    <!-- Kinyarwanda Content -->
+    <div class="content" data-lang="rw">
+      <h2>Ibyerekeye KIRA Clinic</h2>
+      <p><strong>Murakaza neza kuri KIRA Clinic</strong></p>
+      <p>KIRA Clinic ni ivuriro ryigenga rikorera mu Karere ka Nyagatare, ryiyemeje gutanga serivisi z’ubuvuzi bufite ireme kandi zishingiye ku murwayi.</p>
+
+      <h3>Intego yacu</h3>
+      <p>Gutanga ubuvuzi bufite ireme, buhendutse kandi bwita ku murwayi mu rwego rwo guteza imbere ubuzima bwiza bw’abaturage ba Nyagatare n’ahandi.</p>
+
+      <h3>Inzozi zacu</h3>
+      <p>Kuba ivuriro ry’icyitegererezo mu Ntara y’Iburasirazuba, rizwiho gutanga serivisi nziza z’ubuvuzi no gufasha abaturage mu bijyanye n’ubuzima.</p>
+
+      <h3>Indangagaciro zacu</h3>
+      <ul>
+        <li>Impuhwe</li>
+        <li>Ubunyamwuga</li>
+        <li>Ubumwe n’ubunyangamugayo</li>
+        <li>Kubaha</li>
+        <li>Kwigira hamwe no guhora twiteza imbere</li>
+      </ul>
+
+      <em>KIRA Clinic — Ubuzima bwawe, ni intego yacu.</em>
+    </div>
+  </div>
+
+  <script>
+    const langSelector = document.getElementById('language');
+    const contents = document.querySelectorAll('[data-lang]');
+
+    function switchLanguage(lang) {
+      contents.forEach(div => {
+        if (div.getAttribute('data-lang') === lang) {
+          div.classList.add('active');
+        } else {
+          div.classList.remove('active');
+        }
+      });
+    }
+
+    // Initialize default language
+    switchLanguage(langSelector.value);
+
+    // Change language on selection
+    langSelector.addEventListener('change', (e) => {
+      switchLanguage(e.target.value);
+    });
+  </script>
+
+</body>
+</html>

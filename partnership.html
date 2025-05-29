@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIRA Clinic Partnership Management</title>
+    <style>
+         .navbar {
+  background-color: #4CAF50;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.2rem;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: green;
+  font-weight: bold;
+}
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #0b5e7a;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #0b5e7a;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .button {
+            background-color: #0b5e7a;
+            color: white;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #094c5c;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+      <div class="logo">
+        <img src="logo.png" alt="Kira Clinic Logo">
+        <span>Kira Clinic</span>
+      </div>
+      <nav>
+          <a href="web task.html">Home</a>
+          <a href="service.html">Services</a>
+          <a href="partnership.html">Partnership</a>
+          <a href="docters.html">Our Doctors</a>
+          <a href="about.html">About Us</a>
+          <a href="new.html">Contact us</a>
+
+        </div>
+
+<header>
+    <h1>KIRA Clinic Partnership Management</h1>
+</header>
+
+<div class="container">
+    <form id="partnership-form">
+        <h3>Add New Partnership</h3>
+        <input type="text" id="partner-name" placeholder="Partner Name" required>
+        <select id="partnership-type" required>
+            <option value="">Select Partnership Type</option>
+            <option value="Strategic">Strategic</option>
+            <option value="Financial">Financial</option>
+            <option value="Technical">Technical</option>
+            <option value="Research">Research</option>
+        </select>
+        <input type="date" id="start-date" required>
+        <input type="date" id="end-date">
+        <button type="submit" class="button">Add Partnership</button>
+    </form>
+
+    <h3>Current Partnerships</h3>
+    <table id="partnerships-table">
+        <thead>
+            <tr>
+                <th>Partner Name</th>
+                <th>Partnership Type</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Partnerships will be listed here -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    const form = document.getElementById('partnership-form');
+    const partnershipsTable = document.getElementById('partnerships-table').getElementsByTagName('tbody')[0];
+
+    // Store partnerships in an array
+    let partnerships = [];
+
+    // Function to add a new partnership
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const partnerName = document.getElementById('partner-name').value;
+        const partnershipType = document.getElementById('partnership-type').value;
+        const startDate = document.getElementById('start-date').value;
+        const endDate = document.getElementById('end-date').value || 'Ongoing';
+
+        const partnership = {
+            partnerName,
+            partnershipType,
+            startDate,
+            endDate,
+            status: endDate === 'Ongoing' ? 'Active' : 'Terminated'
+        };
+
+        partnerships.push(partnership);
+        displayPartnerships();
+        form.reset();
+    });
+
+    // Function to display all partnerships in the table
+    function displayPartnerships() {
+        partnershipsTable.innerHTML = '';
+        partnerships.forEach((partnership, index) => {
+            const row = partnershipsTable.insertRow();
+            row.innerHTML = `
+                <td>${partnership.partnerName}</td>
+                <td>${partnership.partnershipType}</td>
+                <td>${partnership.startDate}</td>
+                <td>${partnership.endDate}</td>
+                <td>${partnership.status}</td>
+                <td><button class="button" onclick="terminatePartnership(${index})">Terminate</button></td>
+            `;
+        });
+    }
+
+    // Function to terminate a partnership
+    function terminatePartnership(index) {
+        const endDate = prompt('Enter the termination date (YYYY-MM-DD):');
+        if (endDate) {
+            partnerships[index].endDate = endDate;
+            partnerships[index].status = 'Terminated';
+            displayPartnerships();
+        }
+    }
+</script>
+
+</body>
+</html>
